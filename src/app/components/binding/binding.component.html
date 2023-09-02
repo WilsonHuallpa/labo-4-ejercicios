@@ -1,0 +1,15 @@
+<!-- bindeo 4 forma 
+
+    {{ }} - Interpolacion c ->  v 
+    [] - Propety banding c -> v
+    () - Event Banding v -> c
+    [()] Two way bindig v <-> c
+-->
+
+<p>{{name}}</p>
+
+<input type="text" [(ngModel)]="apellido" placeholder="Ingrese el apellido">
+<input type="button" [value]="btnLabel" (click)="onClick($event)"/>
+<hr>
+
+<p>{{apellido}}</p>
