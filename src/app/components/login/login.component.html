@@ -1,25 +1,32 @@
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
-      <h2 class="active"> Sign In </h2>
-      <h2 class="inactive underlineHover">Sign Up </h2>
-  
-      <!-- Icon -->
+      <h2 [class.active]="activeTab === 'log-in'" (click)="activeTab = 'log-in'">Iniciar sesión</h2>
+      <h2 [class.active]="activeTab === 'sign-up'" (click)="activeTab = 'sign-up'">Inscribirse</h2>
+      
       <div class="fadeIn first">
-        <img src="../../../assets/control-de-juego.png" id="icon" alt="User Icon" />
+        <img src="../../../assets/control-de-juego.png" id="icon" alt="User Icon" style="width: 200px; height: 200px;" />
       </div>
-  
+    
       <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form>
-  
-      <!-- Remind Passowrd -->
-      <div id="formFooter">
-        <a class="underlineHover" href="#">Forgot Password?</a>
+      <div *ngIf="activeTab === 'log-in'">
+        <form [formGroup]="loginUsuario" (ngSubmit)="login()">
+          <input type="text" id="correo" class="fadeIn second" name="correo"  formControlName="correo" placeholder="Correo Electronico">
+          <input type="password" id="password" class="fadeIn third" name="password" formControlName="password" placeholder="Contraseña">
+          <input type="submit" class="fadeIn fourth" value="iniciar la sesión">
+        </form>
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+          <a class="underlineHover" href="#">¿Has olvidado tu contraseña?</a>
+        </div>
       </div>
-  
+      <div *ngIf="activeTab === 'sign-up'">
+        <form [formGroup]="signupusuario" (ngSubmit)="signup()">
+          <input type="text" id="correoIn" class="fadeIn second" name="correoIn" formControlName="correo" placeholder="Correo Electronico">
+          <input type="password" id="passwordIn" class="fadeIn third" name="passwordIn" formControlName="password"  placeholder="Contraseña">
+          <input type="password" id="repeatPassworIn" class="fadeIn third" name="repeatPassworIn" formControlName="repetirPassword" placeholder="Repetir contraseña">
+          <input type="submit" class="fadeIn fourth" value="Registrarse">
+        </form>
+      </div>
     </div>
   </div>
